@@ -106,7 +106,7 @@ import tarfile
 
 import numpy as np
 from six.moves import urllib
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from tensorflow.python.framework import graph_util
 from tensorflow.python.framework import tensor_shape
@@ -148,7 +148,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
   sub_dirs = sorted(item for item in sub_dirs
                     if gfile.IsDirectory(item))
   for sub_dir in sub_dirs:
-    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG']
+    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png']
     file_list = []
     dir_name = os.path.basename(sub_dir)
     if dir_name == image_dir:
@@ -1145,7 +1145,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--image_dir',
       type=str,
-      default='',
+      default='/workspace/copy/lego-image-recognition/tf_files/lego_sets',
       help='Path to folders of labeled images.'
   )
   parser.add_argument(
